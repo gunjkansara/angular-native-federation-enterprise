@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,7 +9,7 @@ import { AuthService } from '../../core/auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, RouterLink],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })

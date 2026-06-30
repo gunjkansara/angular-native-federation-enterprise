@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { DemoApiService } from '../../core/auth/services/demo-api.service';
+import { AppStateService } from '../../core/state/app-state.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,14 @@ import { DemoApiService } from '../../core/auth/services/demo-api.service';
 })
 export class Home implements OnInit {
 
+  private appState = inject(AppStateService);
+
   constructor(private apiService: DemoApiService) {
+    this.appState.setLoading(true);
+
+    setTimeout(() => {
+      this.appState.setLoading(false);
+    }, 3000);
 
   }
 
