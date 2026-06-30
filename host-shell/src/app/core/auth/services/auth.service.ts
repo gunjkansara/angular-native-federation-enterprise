@@ -63,6 +63,16 @@ export class AuthService {
         if (match) {
             this.currentUser.set(match.user);
             this.appState.setUser(match.user);
+
+            // For Testing Notification Badge added below code
+            this.appState.addNotification({
+                id: 1,
+                title: 'Login Successful',
+                message: 'Welcome Admin',
+                read: false,
+                createdAt: new Date()
+            });
+
             localStorage.setItem('currentUser', JSON.stringify(match.user));
             return true;
         }

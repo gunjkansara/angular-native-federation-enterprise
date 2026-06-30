@@ -8,7 +8,18 @@
     @if(authService.currentUser(); as user){
 
     <div class="user-section">
+
+        <button mat-icon-button class="notification-btn" matBadge="{{ appState.notificationCount() }}"
+            matBadgeColor="warn" matTooltip="Notifications">
+
+            <mat-icon>
+                notifications
+            </mat-icon>
+
+        </button>
+
         <div class="user-details">
+
             <span class="welcome-text">
                 Welcome, {{ user.username }}
             </span>
@@ -24,10 +35,13 @@
         </mat-icon>
 
         <button mat-icon-button (click)="logout()" matTooltip="Logout">
+
             <mat-icon>
                 logout
             </mat-icon>
+
         </button>
+
     </div>
 
     }

@@ -2,6 +2,8 @@ import { Injectable, signal, computed } from '@angular/core';
 import { AppState } from './models/app-state.model';
 import { User } from '../auth/models/user.model';
 
+import { AppNotification } from '../../shared/models/notification.model';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -11,7 +13,8 @@ export class AppStateService {
         user: null,
         theme: 'light',
         loading: false,
-        notificationCount: 0
+        notificationCount: 0,
+        notifications: []
     });
 
     readonly user = computed(() => this.state().user);
@@ -20,7 +23,13 @@ export class AppStateService {
 
     readonly loading = computed(() => this.state().loading);
 
-    readonly notificationCount = computed(() => this.state().notificationCount);
+    readonly notificationCount = computed(() => this.state()
+        .notifications
+        .filter(notification => !notification.read)
+        .length
+    );
+
+    readonly notifications = computed(() => this.state().notifications);
 
     setUser(user: User | null): void {
         this.state.update(state => ({ ...state, user }));
@@ -36,5 +45,27 @@ export class AppStateService {
 
     setNotificationCount(count: number): void {
         this.state.update(state => ({ ...state, notificationCount: count }));
+    }
+
+    addNotification(notification: AppNotification): void {
+        this.state.update(state => ({
+            ...state,
+            notifications: [notification, ...state.notifications],
+            notificationCount: state.notificationCount + 1
+        }));
+    }
+
+    clearNotifications(): void {
+        this.state.update(state => ({
+            ...state, notifications: [], notificationCount: 0
+        }));
+    }
+
+    markAllAsRead(): void {
+        this.state.update(state => ({
+            ...state,
+            notifications: state.notifications.map(notification => ({ ...notification, read: true })),
+            notificationCount: 0
+        }));
     }
 }
