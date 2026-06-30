@@ -1,0 +1,29 @@
+.access-denied {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    text-align: center;
+}
+
+.access-icon {
+    font-size: 80px;
+    width: 80px;
+    height: 80px;
+    color: #f44336;
+    margin-bottom: 16px;
+}
+
+.access-denied h1 {
+    margin-bottom: 12px;
+}
+
+.access-denied p {
+    margin-bottom: 24px;
+    color: #666;
+}
+
+.access-denied button {
+    min-width: 220px;
+}

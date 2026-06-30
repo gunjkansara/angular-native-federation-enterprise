@@ -1,0 +1,40 @@
+.sidebar {
+    width: 250px;
+    background: #172b4d;
+    color: white;
+    min-height: 100%;
+}
+
+.sidebar-header {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 600;
+    padding: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 16px 24px;
+
+    color: white;
+    text-decoration: none;
+
+    transition: .2s;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, .1);
+}
+
+.active-link {
+    background: rgba(255, 255, 255, .15);
+    border-left: 4px solid #42a5f5;
+}
+
+mat-icon {
+    color: white;
+}

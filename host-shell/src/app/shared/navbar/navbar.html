@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" class="navbar">
+    <span class="logo">
+        Angular Native Federation
+    </span>
+
+    <span class="spacer"></span>
+
+    @if(authService.currentUser(); as user){
+
+    <div class="user-section">
+        <div class="user-details">
+            <span class="welcome-text">
+                Welcome, {{ user.username }}
+            </span>
+
+            <span class="role-badge">
+                {{ user.role }}
+            </span>
+
+        </div>
+
+        <mat-icon class="user-icon">
+            account_circle
+        </mat-icon>
+
+        <button mat-icon-button (click)="logout()" matTooltip="Logout">
+            <mat-icon>
+                logout
+            </mat-icon>
+        </button>
+    </div>
+
+    }
+
+</mat-toolbar>

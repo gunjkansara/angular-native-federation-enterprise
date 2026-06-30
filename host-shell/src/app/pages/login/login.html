@@ -1,0 +1,83 @@
+<div class="login-page">
+
+    <mat-card class="login-card">
+
+        <div class="logo-section">
+
+            <mat-icon class="logo-icon">
+                account_balance
+            </mat-icon>
+
+            <h1>Angular Native Federation Portal</h1>
+
+            <p class="sub-title">
+                Enterprise Micro Frontend Platform
+            </p>
+
+        </div>
+
+        <form>
+
+            <mat-form-field appearance="outline" class="full-width">
+
+                <mat-label>
+                    Username
+                </mat-label>
+
+                <mat-icon matPrefix>
+                    person
+                </mat-icon>
+
+                <input matInput [(ngModel)]="username" name="username">
+
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+
+                <mat-label>
+                    Password
+                </mat-label>
+
+                <mat-icon matPrefix>
+                    lock
+                </mat-icon>
+
+                <input matInput type="password" [(ngModel)]="password" name="password">
+
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" class="login-btn" (click)="login()">
+
+                <mat-icon>
+                    login
+                </mat-icon>
+
+                Sign In
+
+            </button>
+
+        </form>
+
+        <mat-divider></mat-divider>
+
+        <div class="demo-info">
+
+            <h4>
+                Demo Credentials
+            </h4>
+
+            <p>
+                Username : <strong>admin</strong>
+            </p>
+
+            <p>
+                Password : <strong>admin123</strong>
+            </p>
+
+            <p class="version"> Version 1.0.0 </p>
+
+        </div>
+
+    </mat-card>
+
+</div>
