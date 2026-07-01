@@ -11,15 +11,17 @@
 
         <button mat-icon-button class="notification-btn" matBadge="{{ appState.notificationCount() }}"
             matBadgeColor="warn" matTooltip="Notifications">
-
             <mat-icon>
                 notifications
             </mat-icon>
+        </button>
 
+        <button mat-icon-button (click)="toggleTheme()" matTooltip="Toggle Theme">
+            <mat-icon> {{ appState.theme() === 'light' ? 'dark_mode' : 'light_mode' }}
+            </mat-icon>
         </button>
 
         <div class="user-details">
-
             <span class="welcome-text">
                 Welcome, {{ user.username }}
             </span>
@@ -27,7 +29,6 @@
             <span class="role-badge">
                 {{ user.role }}
             </span>
-
         </div>
 
         <mat-icon class="user-icon">
@@ -35,15 +36,11 @@
         </mat-icon>
 
         <button mat-icon-button (click)="logout()" matTooltip="Logout">
-
             <mat-icon>
                 logout
             </mat-icon>
-
         </button>
-
     </div>
-
     }
 
 </mat-toolbar>

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,12 +17,15 @@ import { AppStateService } from '../../core/state/app-state.service';
 })
 export class Navbar {
 
-  protected appState = inject(AppStateService);
-
-  constructor(public authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router, protected appState: AppStateService) { }
 
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  toggleTheme(): void {
+    const nextTheme = this.appState.theme() === 'light' ? 'dark' : 'light';
+    this.appState.setTheme(nextTheme);
   }
 }

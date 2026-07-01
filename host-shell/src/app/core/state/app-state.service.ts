@@ -3,6 +3,8 @@ import { AppState } from './models/app-state.model';
 import { User } from '../auth/models/user.model';
 
 import { AppNotification } from '../../shared/models/notification.model';
+import { ThemeService } from './theme.service';
+import { ThemeMode } from './models/theme.model';
 
 @Injectable({
     providedIn: 'root'
@@ -31,12 +33,18 @@ export class AppStateService {
 
     readonly notifications = computed(() => this.state().notifications);
 
+    constructor(private themeService: ThemeService) {
+        const theme = this.themeService.getStoredTheme();
+        this.setTheme(theme);
+    }
+
     setUser(user: User | null): void {
         this.state.update(state => ({ ...state, user }));
     }
 
-    setTheme(theme: 'light' | 'dark'): void {
+    setTheme(theme: ThemeMode): void {
         this.state.update(state => ({ ...state, theme }));
+        this.themeService.applyTheme(theme);
     }
 
     setLoading(loading: boolean): void {
