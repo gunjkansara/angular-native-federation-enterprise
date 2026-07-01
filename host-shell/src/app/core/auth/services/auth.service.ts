@@ -2,6 +2,8 @@ import { Injectable, signal, computed } from '@angular/core';
 
 import { User } from '../models/user.model';
 
+import { AppStateService } from '../../state/app-state.service';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -11,7 +13,7 @@ export class AuthService {
 
     isAuthenticated = computed(() => this.currentUser() !== null);
 
-    constructor() {
+    constructor(private appState: AppStateService) {
         this.restoreSession();
     }
 
@@ -60,6 +62,17 @@ export class AuthService {
 
         if (match) {
             this.currentUser.set(match.user);
+            this.appState.setUser(match.user);
+
+            // For Testing Notification Badge added below code
+            this.appState.addNotification({
+                id: 1,
+                title: 'Login Successful',
+                message: 'Welcome Admin',
+                read: false,
+                createdAt: new Date()
+            });
+
             localStorage.setItem('currentUser', JSON.stringify(match.user));
             return true;
         }
@@ -75,6 +88,7 @@ export class AuthService {
     logout(): void {
         localStorage.removeItem('currentUser');
         this.currentUser.set(null);
+        this.appState.setUser(null);
     }
 
     restoreSession(): void {
@@ -82,7 +96,10 @@ export class AuthService {
             localStorage.getItem('currentUser');
 
         if (user) {
-            this.currentUser.set(JSON.parse(user));
+            // this.currentUser.set(JSON.parse(user));
+            const parsedUser = JSON.parse(user);
+            this.currentUser.set(parsedUser);
+            this.appState.setUser(parsedUser);
         }
     }
 }
